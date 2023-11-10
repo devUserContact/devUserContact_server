@@ -9,7 +9,7 @@ services:
     environment:
       - MYSQL_DATABASE=blog_devUserContact
     volumes:
-      - :/root/mysql
+      - $DB_VOLUME_PATH:/root/mysql
 #This docker-compose file defines a single service called `mariadb` that uses the official Alpine Linux image. The container is named
 #`mariadb`, and the database port (3306) is exposed on the host machine. The environment variables `MYSQL_ROOT_PASSWORD` and
 #`MYSQL_DATABASE` are used to configure the root password and the name of the default database, respectively. Finally, a volume is mounted
