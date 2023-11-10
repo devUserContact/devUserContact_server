@@ -1,11 +1,17 @@
 version: '3'
 services:
-  application:
-    image: rust
+  rust-service:
+    image: rust:latest
     tty: true
     container_name: rust_container
-      #    command: ['./entrypoint_app.sh']
-  db:
+    command: ['./target/debug/devUserContact_api']
+    working_dir: 
+      /app
+    volumes:
+      - ./devUserContact_api:/app
+    ports:
+      - 8080:8080
+  db-service:
     image: mariadb:latest
     container_name: mariadb_container
     tty: true
@@ -16,7 +22,7 @@ services:
       - $DB_VOLUME_PATH:/root/mysql
     ports:
       - '3306:3306'
-  web:
+  proxy-service:
     image: nginx:latest
     container_name: nginx_container
     tty: true
