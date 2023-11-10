@@ -1,27 +1,22 @@
 version: '3'
 services:
-  mariadb:
-    tty: true
-    image: alpine:latest
-    container_name: mariadb
-    ports:
-      - '3306:3306'
+  application:
+    image: archlinux:latest
+    container_name: rust_container
+    command: ['./entrypoint_app.sh']
+  db:
+    image: mariadb:latest
+    container_name: mariadb_container
+    command: ['./entrypoint_db.sh']
     environment:
       - MYSQL_DATABASE=blog_devUserContact
     volumes:
       - $DB_VOLUME_PATH:/root/mysql
-#This docker-compose file defines a single service called `mariadb` that uses the official Alpine Linux image. The container is named
-#`mariadb`, and the database port (3306) is exposed on the host machine. The environment variables `MYSQL_ROOT_PASSWORD` and
-#`MYSQL_DATABASE` are used to configure the root password and the name of the default database, respectively. Finally, a volume is mounted
-#at `./mysql:/var/lib/mysql` to persist data between container restarts.
-#
-#You can run this docker-compose file using the command `docker-compose up -d`. This will start the container in detached mode (`-d`),
-#which means that the output of the container will not be visible on your terminal, but you can still use it by connecting to it through a
-#client or by accessing it through another service.
-#
-#Note that this example is very basic and does not include any additional configuration options or customization. For more advanced usage
-#and configuration options, please refer to the official Alpine Linux documentation and MariaDB documentation.[1][2]
-#
-#[1] https://hub.docker.com/_/alpine
-#
-#[2] https://hub.docker.com/_/mariadb
+    ports:
+      - '3306:3306'
+  web:
+    image: nginx:latest
+    container_name: nginx_container
+    command: ['./entrypoint_web.sh']
+    ports:
+      - '8080:80'
