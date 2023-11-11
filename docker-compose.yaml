@@ -5,8 +5,7 @@ services:
     tty: true
     container_name: rust_container
     command: ['./target/debug/devUserContact_api']
-    working_dir: 
-      /app
+    working_dir: /app
     volumes:
       - ./devUserContact_api:/app
     ports:
@@ -22,10 +21,10 @@ services:
       - $DB_VOLUME_PATH:/root/mysql
     ports:
       - '3306:3306'
-  proxy-service:
-    image: nginx:latest
-    container_name: nginx_container
-    tty: true
-    command: ['./entrypoint_web.sh']
-    ports:
-      - '8080:80'
+        #  proxy-service:
+        #    image: nginx-proxy
+        #    container_name: nginx_container
+        #    tty: true
+        #    command: ['./entrypoint_web.sh']
+        #    ports:
+        #      - '443:443'

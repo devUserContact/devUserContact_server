@@ -1,1 +1,1 @@
-/app/target/debug/devUserContact_api: /app/src/main.rs
+/Users/metalItem/folder/prg/devUser/webDev/rust/devUserContact_server/devUserContact_api/target/debug/devUserContact_api: /Users/metalItem/folder/prg/devUser/webDev/rust/devUserContact_server/devUserContact_api/src/main.rs
