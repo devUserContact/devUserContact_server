@@ -4,12 +4,12 @@ services:
     image: rust:latest
     tty: true
     container_name: rust_container
-    command: ['./target/debug/devUserContact_api']
+    command: ['./build_script.sh']
     working_dir: /app
     volumes:
       - ./devUserContact_api:/app
     ports:
-      - 8080:8080
+      - '8080:8080'
   db-service:
     image: mariadb:latest
     container_name: mariadb_container

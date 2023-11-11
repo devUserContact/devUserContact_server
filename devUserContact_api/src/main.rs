@@ -5,6 +5,6 @@ async fn main() -> Result<(), std::io::Error> {
     app.with(tide::log::LogMiddleware::new());
 
     app.at("/").get(|_| async { Ok("Hello, world!") });
-    app.listen("127.0.0.1:8080").await?;
+    app.listen("0.0.0.0:8080").await?;
     Ok(())
 }
