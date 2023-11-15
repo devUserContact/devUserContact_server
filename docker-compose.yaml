@@ -18,13 +18,15 @@ services:
     environment:
       - MYSQL_DATABASE=blog_devUserContact
     volumes:
-      - $DB_VOLUME_PATH:/root/mysql
+      - ./devUserContact_proxy:/app
     ports:
       - '3306:3306'
         #  proxy-service:
         #    image: nginx-proxy
         #    container_name: nginx_container
         #    tty: true
-        #    command: ['./entrypoint_web.sh']
+        #    command: ['./entrypoint_proxy.sh']
+        #    volumes:
+        #      - ./devUserContact_proxy:/app
         #    ports:
         #      - '443:443'
